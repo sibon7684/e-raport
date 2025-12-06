@@ -1,7 +1,8 @@
 import { Student } from './types';
 
-export const SCHOOL_NAME = "SMP Harapan Bangsa";
+export const SCHOOL_NAME = "SMP Muhammadiyah Pakem";
 export const APP_TITLE = "Portal E-Rapor Siswa";
 
-// Configuration for Google Sheets
-export const GOOGLE_SHEET_ID = "1xtblciv6tNOaF2ZDPeRVvHh-hb5iQEetTr7pFk1q7LI";
+// PENTING: Ganti URL di bawah ini dengan URL Web App dari Google Apps Script Anda
+// Cara: Extensions > Apps Script > Deploy > Web App > Who has access: Anyone
+export const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbziDRJ17zZqE4YCBYw4wR-RdK-_03AJDdY98te50ODUvZjOfzV2F2Rm5hZDk5NZHBom/exec";

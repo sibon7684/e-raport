@@ -13,11 +13,16 @@ const App: React.FC = () => {
 
   // Effect to check URL for NISN parameter on initial load
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlNisn = params.get('nisn');
-    
-    if (urlNisn) {
-      handleSearch(urlNisn);
+    // Wrap in try-catch as accessing window.location in some sandboxes might be tricky
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const urlNisn = params.get('nisn');
+      
+      if (urlNisn) {
+        handleSearch(urlNisn);
+      }
+    } catch (e) {
+      console.log("Could not read URL parameters", e);
     }
   }, []);
 
@@ -32,9 +37,14 @@ const App: React.FC = () => {
         setStudentData(student);
         setAppState(AppState.SUCCESS);
         // Optional: Update URL without reloading page to make sharing easier
-        const newUrl = new URL(window.location.href);
-        newUrl.searchParams.set('nisn', nisn);
-        window.history.pushState({}, '', newUrl);
+        // Wrapped in try-catch to handle Blob URL/Sandbox limitations
+        try {
+          const newUrl = new URL(window.location.href);
+          newUrl.searchParams.set('nisn', nisn);
+          window.history.pushState({}, '', newUrl.toString());
+        } catch (e) {
+          console.debug("URL update skipped (sandbox environment)");
+        }
       } else {
         setErrorMessage('Data tidak ditemukan. Silakan periksa kembali NISN Anda.');
         setAppState(AppState.ERROR);
@@ -51,9 +61,13 @@ const App: React.FC = () => {
     setStudentData(null);
     setErrorMessage('');
     // Clean URL param on reset
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.delete('nisn');
-    window.history.pushState({}, '', newUrl);
+    try {
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.delete('nisn');
+      window.history.pushState({}, '', newUrl.toString());
+    } catch (e) {
+      console.debug("URL update skipped (sandbox environment)");
+    }
   };
 
   return (
