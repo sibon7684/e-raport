@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout } from './components/Layout';
+import { MainLayout } from './components/MainLayout';
 import { NisnForm } from './components/NisnForm';
 import { ResultCard } from './components/ResultCard';
 import { Student, AppState } from './types';
@@ -71,7 +71,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <MainLayout>
       {appState === AppState.IDLE && (
         <NisnForm onSearch={handleSearch} isLoading={false} />
       )}
@@ -109,7 +109,7 @@ const App: React.FC = () => {
            </div>
         </div>
       )}
-    </Layout>
+    </MainLayout>
   );
 };
 
