@@ -1,0 +1,7 @@
+{
+  "name": "E-Rapor SMP Modern",
+  "description": "Aplikasi portal siswa modern untuk melihat dan mendownload hasil rapor digital (PDF) menggunakan NISN. Dilengkapi dengan tema sekolah SMP.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
